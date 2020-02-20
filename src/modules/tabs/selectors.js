@@ -15,7 +15,9 @@ export const selectByWindow = state => {
   return windows.reduce((acc, item) => {
     return acc.concat({
       id: item,
-      children: tabs.filter(itm => itm.windowId === item),
+      children: tabs
+        .filter(itm => itm.windowId === item)
+        .sort((a, b) => a.index - b.index),
     });
   }, []);
 };

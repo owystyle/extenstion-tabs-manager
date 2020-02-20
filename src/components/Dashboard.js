@@ -5,6 +5,7 @@ import GlobalProvider from "./providers/GlobalProvider";
 import { default as Layout } from "./layout/Main";
 import Tabs from "./views/Tabs";
 import Bookmark from "./views/Bookmark";
+import Settings from "./views/Settings";
 
 function Dashboard() {
   // Print state for debugging
@@ -24,6 +25,7 @@ function Dashboard() {
         <Switch>
           <Route path="/dashboard" component={Tabs} exact />
           <Route path="/dashboard/bookmark/:id" component={Bookmark} />
+          <Route path="/dashboard/settings" component={Settings} />
         </Switch>
       </Layout>
     </GlobalProvider>

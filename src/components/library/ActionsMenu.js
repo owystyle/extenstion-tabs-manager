@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import IconButton from "@material-ui/core/IconButton";
 import { Typography, Divider } from "@material-ui/core";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -17,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function WindowMoreActions({ id, children }) {
+function ActionsMenu({ children }) {
   const styles = useStyles();
   const dispatch = useDispatch();
   const { temp } = useBookmarks();
@@ -34,6 +32,7 @@ function WindowMoreActions({ id, children }) {
 
   const handleClickMore = (e, id) => {
     console.log("dsfdsfdsf", id);
+    e.stopPropagation();
     setMenuEl(e.currentTarget);
   };
 
@@ -102,4 +101,4 @@ function WindowMoreActions({ id, children }) {
   );
 }
 
-export default WindowMoreActions;
+export default ActionsMenu;

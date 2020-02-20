@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useMemo } from "react";
 import {
   List,
   ListItem,
@@ -13,11 +13,16 @@ import OpenInBrowser from "@material-ui/icons/OpenInBrowser";
 import useBookmarks from "../library/useBookmarks";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+
+const START_COUNT = 3;
 
 function BookmarksTemp() {
   const { temp } = useBookmarks();
   const dispatch = useDispatch();
   const location = useLocation();
+  const [showAll, setShowAll] = useState(false);
 
   const handleOpen = useCallback(
     id => {
@@ -26,12 +31,16 @@ function BookmarksTemp() {
     [dispatch]
   );
 
+  const items = useMemo(() => {
+    return showAll ? temp : temp.filter((r, i) => i < START_COUNT);
+  }, [temp, showAll]);
+
   if (temp.length === 0) return null;
 
   return (
     <>
       <List>
-        {temp.map(folder => (
+        {items.map(folder => (
           <ListItem
             button
             component="a"
@@ -50,6 +59,12 @@ function BookmarksTemp() {
             </ListItemSecondaryAction>
           </ListItem>
         ))}
+        <ListItem button onClick={() => setShowAll(!showAll)}>
+          <ListItemIcon>
+            {showAll ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          </ListItemIcon>
+          <ListItemText primary={`${showAll ? "Show less" : "Show all"}`} />
+        </ListItem>
       </List>
       <Divider />
     </>

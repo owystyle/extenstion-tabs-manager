@@ -51,17 +51,17 @@ export function* watchChanges() {
     window.chrome.tabs.onUpdated.addListener(onChange);
     window.chrome.tabs.onCreated.addListener(onChange);
     window.chrome.tabs.onRemoved.addListener(onChange);
-    window.chrome.tabs.onMoved.addListener(onChange);
-    window.chrome.tabs.onDetached.addListener(onChange);
-    window.chrome.tabs.onAttached.addListener(onChange);
+    window.chrome.tabs.onMoved.addListener(emitter);
+    window.chrome.tabs.onDetached.addListener(emitter);
+    window.chrome.tabs.onAttached.addListener(emitter);
 
     return () => {
       window.chrome.tabs.onUpdated.removeListener(onChange);
       window.chrome.tabs.onCreated.removeListener(onChange);
       window.chrome.tabs.onRemoved.removeListener(onChange);
-      window.chrome.tabs.onMoved.removeListener(onChange);
-      window.chrome.tabs.onDetached.removeListener(onChange);
-      window.chrome.tabs.onAttached.removeListener(onChange);
+      window.chrome.tabs.onMoved.removeListener(emitter);
+      window.chrome.tabs.onDetached.removeListener(emitter);
+      window.chrome.tabs.onAttached.removeListener(emitter);
     };
   });
 

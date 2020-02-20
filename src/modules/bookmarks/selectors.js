@@ -14,7 +14,7 @@ export const selectTemp = state => {
     state.bookmarks.byId[state.config[config.tempFolder.storeIdKey]];
   if (!folder) return [];
 
-  return folder.children;
+  return folder.children.sort((a, b) => b.index - a.index);
 };
 
 export const selectMain = state => {
@@ -22,7 +22,7 @@ export const selectMain = state => {
     state.bookmarks.byId[state.config[config.mainFolder.storeIdKey]];
   if (!folder) return [];
 
-  return folder.children;
+  return folder.children.sort((a, b) => b.index - a.index);
 };
 
 export const selectById = (state, id) => {

@@ -6,6 +6,7 @@ import {
   createWindow as createChromeWindow,
   removeFolder as removeChromeFolder,
   createTab as createChromeTab,
+  getCurrentTab as getCurrentChromeTab,
 } from "../../chrome";
 import normalize from "./normalize";
 
@@ -65,8 +66,12 @@ function* openFolder(id) {
 
     yield call(createChromeWindow, { url: tabs });
     yield call(removeChromeFolder, id);
-    yield put({ type: "TABS_GET" });
-    yield put({ type: "BOOKMARKS_GET" });
+
+    const current = yield call(getCurrentChromeTab);
+    yield put({ type: "TABS_CLOSE", tabs: [].concat(current.id) });
+
+    // yield put({ type: "TABS_GET" });
+    // yield put({ type: "BOOKMARKS_GET" });
   } catch (error) {
     yield put({ type: "BOOKMARKS_ERROR" });
   }

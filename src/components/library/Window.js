@@ -54,12 +54,9 @@ function Window(props) {
         </TableHead>
         <TableBody>
           {children.map(row => (
-            <TableRow hover key={row.id}>
+            <TableRow hover key={row.id} onClick={() => onSelect(row.id)}>
               <TableCell className={styles.small} align="left">
-                <Checkbox
-                  onChange={() => onSelect(row.id)}
-                  checked={isSelected(row.id)}
-                />
+                <Checkbox checked={isSelected(row.id)} />
               </TableCell>
               <TableCell className={styles.small} align="left" padding="none">
                 <Avatar
@@ -76,7 +73,12 @@ function Window(props) {
                     <VolumeUpIcon fontSize="small" />
                   </IconButton>
                 )}
-                <IconButton onClick={() => onFocus(row.id)}>
+                <IconButton
+                  onClick={e => {
+                    e.stopPropagation();
+                    onFocus(row.id);
+                  }}
+                >
                   <ArrowForwardIcon fontSize="small" />
                 </IconButton>
               </TableCell>

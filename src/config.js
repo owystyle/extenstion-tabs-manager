@@ -1,5 +1,5 @@
 export default {
-  appName: "Tabster",
+  appName: "TabManager",
 
   rootFolder: {
     storeIdKey: "rbfid",

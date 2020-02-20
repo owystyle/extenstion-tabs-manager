@@ -1,12 +1,18 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import useTabs from "../library/useTabs";
 import config from "../../config";
+import { useLocation } from "react-router-dom";
 
 function useActionsToolbar() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const configStore = useSelector(state => state.config);
   const { all, selected, setSelected } = useTabs();
+
+  useEffect(() => {
+    setSelected([]);
+  }, [location, setSelected]);
 
   const handleKeep = useCallback(() => {
     if (selected.length === 0) return;
