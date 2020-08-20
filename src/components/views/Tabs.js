@@ -7,12 +7,12 @@ import useTabs from "../library/useTabs";
 function Tabs() {
   const tabs = useTabs();
 
-  console.log("TABS RENDER");
+  console.log("TABS RENDER !!!!!!!!!!!!!!!!!!!!!");
 
   return (
     <Container maxWidth="lg">
       <Masonry container>
-        {tabs.all.map(group => (
+        {tabs.all.map((group) => (
           <Masonry item key={group.id}>
             <Window {...group} {...tabs} />
           </Masonry>

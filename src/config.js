@@ -1,5 +1,5 @@
 export default {
-  appName: "TabManager",
+  appName: "Tabs Manager",
 
   rootFolder: {
     storeIdKey: "rbfid",

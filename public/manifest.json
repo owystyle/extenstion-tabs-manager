@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
   "version": "0.0.1",
-  "short_name": "TabManager",
-  "name": "Tab Manager",
-  "description": "Manage your active tabs and keep your window clean",
+  "short_name": "NtropyTabs",
+  "name": "Ntropy Tabs Manager",
+  "description": "Save and restore multiple sessions of tabs. Keep your mind focused on your current task.",
   "browser_action": {
-    "default_title": "TabManager",
+    "default_title": "NtropyTabs",
     "default_popup": "popup.html"
   },
   "background": {
@@ -25,12 +25,6 @@
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
   },
-  "permissions": [
-    "tabs",
-    "bookmarks",
-    "activeTab",
-    "storage",
-    "chrome://favicon/"
-  ],
+  "permissions": ["tabs", "bookmarks", "storage", "chrome://favicon/"],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
